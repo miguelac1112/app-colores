@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: inicializar-base-datos
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+spec:
+  template:
+    spec:
+      containers:
+      - name: sembrador-redis
+        image: redis:alpine
+        command: ["sh", "-c"]
+        args:
+          - |
+            echo "Esperando a que Redis despierte..."
+            sleep 5
+            {{- range .Values.frontends }}
+            redis-cli -h backend-svc SET {{ .llave }} "<h1>Hola, soy el pod {{ .nombre }} y mi llave es {{ .llave }}</h1>"
+            {{- end }}
+      restartPolicy: OnFailure
