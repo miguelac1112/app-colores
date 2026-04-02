@@ -1,7 +1,7 @@
 baseDeDatos:
   imagen: "redis:alpine"
 ingress:
-  dominio: "mi-helm.local"
+  dominio: "mi-gitops.local"
 frontends:
   - nombre: "front-1"
     llave: "pod1"
