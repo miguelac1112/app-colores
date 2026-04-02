@@ -9,3 +9,7 @@ frontends:
     llave: "pod2"
   - nombre: "front-3"
     llave: "pod3"
+  - nombre: "front-4"  
+    llave: "pod4"      
+  - nombre: "front-5"  
+    llave: "pod5"      
