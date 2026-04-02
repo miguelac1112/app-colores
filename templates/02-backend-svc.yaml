@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: backend-svc
+  name: backend-svc
+spec:
+  ports:
+  - name: 6379-6379
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: backend-db
+  type: ClusterIP
+status:
+  loadBalancer: {}

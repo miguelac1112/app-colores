@@ -1,0 +1,26 @@
+{{- range .Values.frontends }}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: frontend
+  name: {{ .nombre }}
+spec:
+  volumes:                             # <-- AÑADIDO
+  - name: html-compartido              # <-- AÑADIDO
+    emptyDir: {}                       # <-- AÑADIDO
+  initContainers:                      # <-- AÑADIDO
+  - name: descargar-mensaje            # <-- AÑADIDO
+    image: redis:alpine                # <-- AÑADIDO
+    command: ['sh', '-c', 'redis-cli -h backend-svc GET {{ .llave }} > /mnt/html/index.html']
+    volumeMounts:                      # <-- AÑADIDO
+    - name: html-compartido            # <-- AÑADIDO
+      mountPath: /mnt/html             # <-- AÑADIDO
+  containers:
+  - image: nginx:alpine
+    name: {{ .nombre }}
+    volumeMounts:                      # <-- AÑADIDO
+    - name: html-compartido            # <-- AÑADIDO
+      mountPath: /usr/share/nginx/html # <-- AÑADIDO
+{{- end }}

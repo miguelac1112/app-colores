@@ -1,0 +1,11 @@
+baseDeDatos:
+  imagen: "redis:alpine"
+ingress:
+  dominio: "mi-helm.local"
+frontends:
+  - nombre: "front-1"
+    llave: "pod1"
+  - nombre: "front-2"
+    llave: "pod2"
+  - nombre: "front-3"
+    llave: "pod3"
