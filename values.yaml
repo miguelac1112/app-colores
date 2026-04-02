@@ -1,6 +1,6 @@
 baseDeDatos:
   imagen: "redis:alpine"
-  replicas: 2
+  replicas: 1
 ingress:
   dominio: "mi-gitops.local"
 frontends:
