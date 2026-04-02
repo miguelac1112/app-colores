@@ -5,7 +5,7 @@ metadata:
     app: backend-db
   name: backend-db
 spec:
-  replicas: 1
+  replicas: {{ .Values.baseDeDatos.replicas }}
   selector:
     matchLabels:
       app: backend-db
